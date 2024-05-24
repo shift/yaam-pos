@@ -106,17 +106,11 @@ showCategory(Object.keys(categorizedItems)[0]); // Assuming there's at least one
 
 function showFlash(message) {
     const flash = document.getElementById('flash');
-    flash.innerHTML = ''; // Clear previous content
-
-    const text = document.createTextNode(message);
-    flash.appendChild(text);
-
-    const dismissButton = document.createElement('button');
-    dismissButton.textContent = 'Dismiss';
-    dismissButton.addEventListener('click', hideFlash);
-    flash.appendChild(dismissButton);
-
+    flash.textContent = message;
     flash.style.display = 'block';
+
+    // Add an event listener to the flash
+    flash.addEventListener('click', hideFlash);
 }
 
 function hideFlash() {
@@ -177,6 +171,8 @@ function updateCart() {
 		const pfandControls = document.createElement("div");
 		const addPfandButton = document.createElement("button");
 		addPfandButton.textContent = "+ Pfand";
+		addPfandButton.classList.add('pfand-button');
+		addPfandButton.classList.add('pfand-added');
 		addPfandButton.disabled = item.pfandAdded;
 		addPfandButton.addEventListener("click", () => {
 			item.pfandAdded = true;
@@ -185,6 +181,8 @@ function updateCart() {
 
 		const removePfandButton = document.createElement("button");
 		removePfandButton.textContent = "- Pfand";
+		removePfandButton.classList.add('pfand-button');
+		removePfandButton.classList.add('pfand-not-added');
 		removePfandButton.disabled = !item.pfandAdded;
 		removePfandButton.addEventListener("click", () => {
 			item.pfandAdded = false;

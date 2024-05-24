@@ -224,3 +224,41 @@ footer {
     border: #45a049 2px;
     padding: 5px;
 }
+
+body {
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
+#total {
+    background-color: #003366;
+    color: #FFFFFF;
+}
+
+#display {
+    background-color: #00CCFF;
+    color: #000000;
+}
+
+.remove-button {
+    background-color: #FF0000;
+}
+
+.pfand-button {
+    background-color: #00CC00;
+}
+
+.pfand-button.pfand-added {
+    background-color: #FFD700;
+}
+
+.pfand-button:disabled {
+    background-color: #CCCCCC; /* gray background */
+    color: #888888; /* dark gray text */
+    cursor: not-allowed; /* display a 'not allowed' cursor */
+}
+
+#flash {
+    background-color: #FFD700;
+    color: #000000;
+}
