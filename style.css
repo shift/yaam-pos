@@ -186,3 +186,29 @@ footer {
 .pfand-button.pfand-added {
     background-color: red;
 }
+#flash {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #62f436;
+    color: black;
+    text-align: center;
+    padding: 10px;
+    z-index: 1000;
+}
+#flash button {
+    float: left;
+}
+#total {
+    text-align: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #444444;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    z-index: 999;
+}

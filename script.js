@@ -104,6 +104,25 @@ for (const category in categorizedItems) {
 // Show the first category by default after all categories have been added
 showCategory(Object.keys(categorizedItems)[0]); // Assuming there's at least one category
 
+function showFlash(message) {
+    const flash = document.getElementById('flash');
+    flash.innerHTML = ''; // Clear previous content
+
+    const text = document.createTextNode(message);
+    flash.appendChild(text);
+
+    const dismissButton = document.createElement('button');
+    dismissButton.textContent = 'Dismiss';
+    dismissButton.addEventListener('click', hideFlash);
+    flash.appendChild(dismissButton);
+
+    flash.style.display = 'block';
+}
+
+function hideFlash() {
+    const flash = document.getElementById('flash');
+    flash.style.display = 'none';
+}
 
 // Show items for a category
 function showCategory(category) {
@@ -285,7 +304,7 @@ enterButton.style.width = '100%';
 enterButton.addEventListener("click", () => {
 		const total = cart.reduce((sum, item) => sum + item.price + (item.pfandAdded ? 1 : 0), 0);
 		const change = parseFloat(input) - total;
-		document.getElementById('flash').innerHTML = `Change to be given: €${change.toFixed(2)}`;
+		showFlash(`Change to be given: €${change.toFixed(2)}`);
 		input = '';
 		// Save order to localStorage
 		const order = {
