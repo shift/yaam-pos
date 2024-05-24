@@ -195,36 +195,6 @@ function updateCart() {
 
 }
 
-document.getElementById("checkout").addEventListener("click", () => {
-	// Save order to localStorage
-	const order = {
-		timestamp: new Date(),
-		items: cart.map(item => ({
-			name: item.name,
-			price: item.price,
-			pfandAdded: item.pfandAdded
-		})),
-		total: cart.reduce((sum, item) => sum + item.price, 0)
-	};
-
-	const previousOrders = JSON.parse(localStorage.getItem("orders")) || [];
-	previousOrders.push(order);
-	localStorage.setItem("orders", JSON.stringify(previousOrders));
-
-	// Clear cart
-	cart.length = 0;
-	updateCart();
-
-	// Remove the previous orders display before updating it
-	const previousOrdersDiv = document.getElementById("previousOrders");
-	if (previousOrdersDiv) {
-		previousOrdersDiv.remove();
-	}
-
-	// Show previous orders
-	displayPreviousOrders();
-});
-
 function displayPreviousOrders() {
 	const ordersDiv = document.createElement("div");
 	ordersDiv.id = "previousOrders";
@@ -269,3 +239,87 @@ function removeFromCart(index) {
 	cart.splice(index, 1);
 	updateCart();
 }
+
+let input = '';
+
+// Create number pad
+const numberPad = document.getElementById('numberPad');
+numberPad.style.display = 'grid';
+numberPad.style.gridTemplateColumns = '1fr 1fr 1fr';
+
+// Create digit buttons
+for (let i = 1; i <= 9; i++) {
+    const button = document.createElement('button');
+	button.style.width = '100%';
+    button.textContent = i;
+    button.addEventListener('click', () => {
+        input += i;
+    });
+    numberPad.appendChild(button);
+}
+
+// Create 'Clear' button
+const clearButton = document.createElement('button');
+clearButton.textContent = 'Clear';
+clearButton.style.width = '100%';
+clearButton.addEventListener('click', () => {
+    input = '';
+});
+numberPad.appendChild(clearButton);
+
+// Create '0' button
+const zeroButton = document.createElement('button');
+zeroButton.textContent = '0';
+zeroButton.addEventListener('click', () => {
+    input += '0';
+});
+numberPad.appendChild(zeroButton);
+
+// Create 'Enter' button
+const enterButton = document.createElement('button');
+enterButton.id = 'checkout';
+enterButton.textContent = 'Enter';
+enterButton.style.width = '100%';
+enterButton.addEventListener("click", () => {
+		const total = cart.reduce((sum, item) => sum + item.price, 0);
+		const change = parseFloat(input) - total;
+		document.getElementById('flash').innerHTML = `Change to be given: €${change.toFixed(2)}`;
+		input = '';
+		// Save order to localStorage
+		const order = {
+			timestamp: new Date(),
+			items: cart.map(item => ({
+				name: item.name,
+				price: item.price,
+				pfandAdded: item.pfandAdded
+			})),
+			total: cart.reduce((sum, item) => sum + item.price, 0),
+			change: change
+		};
+	
+		const previousOrders = JSON.parse(localStorage.getItem("orders")) || [];
+		previousOrders.push(order);
+		localStorage.setItem("orders", JSON.stringify(previousOrders));
+	
+		// Clear cart
+		cart.length = 0;
+		updateCart();
+	
+		// Remove the previous orders display before updating it
+		const previousOrdersDiv = document.getElementById("previousOrders");
+		if (previousOrdersDiv) {
+			previousOrdersDiv.remove();
+		}
+	
+		// Show previous orders
+		displayPreviousOrders();
+	});
+	
+numberPad.appendChild(enterButton);
+
+
+
+
+
+
+
