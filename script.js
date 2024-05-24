@@ -275,6 +275,7 @@ for (let i = 1; i <= 9; i++) {
     button.textContent = i;
     button.addEventListener('click', () => {
         input += i;
+		document.getElementById('display').textContent = input;
     });
     numberPad.appendChild(button);
 }
@@ -285,6 +286,7 @@ clearButton.textContent = 'Clear';
 clearButton.style.width = '100%';
 clearButton.addEventListener('click', () => {
     input = '';
+	document.getElementById('display').textContent = input;
 });
 numberPad.appendChild(clearButton);
 
@@ -293,6 +295,7 @@ const zeroButton = document.createElement('button');
 zeroButton.textContent = '0';
 zeroButton.addEventListener('click', () => {
     input += '0';
+	document.getElementById('display').textContent = input;
 });
 numberPad.appendChild(zeroButton);
 
@@ -306,6 +309,7 @@ enterButton.addEventListener("click", () => {
 		const change = parseFloat(input) - total;
 		showFlash(`Change to be given: €${change.toFixed(2)}`);
 		input = '';
+		document.getElementById('display').textContent = input;
 		// Save order to localStorage
 		const order = {
 			timestamp: new Date(),
