@@ -207,7 +207,8 @@ function displayPreviousOrders() {
 
 		// Summary line (clickable)
 		const summaryLine = document.createElement("p");
-		summaryLine.textContent = `${order.timestamp.toLocaleString()}: €${order.total.toFixed(2)}`;
+		const totalWithPfand = order.items.reduce((sum, item) => sum + item.price + (item.pfandAdded ? 1 : 0), 0);
+		summaryLine.textContent = `${order.timestamp.toLocaleString()}: €${totalWithPfand.toFixed(2)}`;
 		summaryLine.addEventListener("click", () => toggleOrderDetails(orderDetails));
 		orderDetails.appendChild(summaryLine);
 
@@ -216,7 +217,7 @@ function displayPreviousOrders() {
 		itemList.style.display = "none"; // Hide initially
 		order.items.forEach(item => {
 			const li = document.createElement("li");
-			li.textContent = `${item.name} - €${item.price.toFixed(2)} ${item.pfandAdded ? "(inkl. Pfand)" : ""}`;
+			li.textContent = `${item.name} - €${(item.price + (item.pfandAdded ? 1 : 0)).toFixed(2)} ${item.pfandAdded ? "(inkl. Pfand)" : ""}`;
 			itemList.appendChild(li);
 		});
 		orderDetails.appendChild(itemList);
@@ -281,7 +282,7 @@ enterButton.id = 'checkout';
 enterButton.textContent = 'Enter';
 enterButton.style.width = '100%';
 enterButton.addEventListener("click", () => {
-		const total = cart.reduce((sum, item) => sum + item.price, 0);
+		const total = cart.reduce((sum, item) => sum + item.price + (item.pfandAdded ? 1 : 0), 0);
 		const change = parseFloat(input) - total;
 		document.getElementById('flash').innerHTML = `Change to be given: €${change.toFixed(2)}`;
 		input = '';
