@@ -9,13 +9,14 @@ h1, h2 {
 
 #items {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive columns */
-    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Responsive columns */
+    gap: 5px;
     margin-bottom: 20px;
 }
 
 #items button {
-    padding: 10px;
+    padding: 8px;
+    font-size: 14pt;
     background-color: lightblue;
     cursor: pointer;
     border: none;
@@ -28,6 +29,7 @@ h1, h2 {
 
 #cart li {
     margin-bottom: 5px;
+    font-size: 14px;
 }
 
 #cart div {  /* For Pfand buttons */
