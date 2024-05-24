@@ -53,3 +53,48 @@ h1, h2 {
     cursor: pointer;
 }
 
+#categories {
+    display: flex; /* Arrange tabs horizontally */
+    overflow-x: auto; /* Enable horizontal scrolling if needed */
+}
+
+#categories button {
+    padding: 10px;
+    background-color: #f0f0f0; /* Lighter background for tabs */
+    border: none;
+    cursor: pointer;
+    margin-right: 5px; /* Add spacing between tabs */
+}
+
+#categories button.active {
+    background-color: lightblue; /* Highlight active tab */
+}
+
+/* Hide items initially */
+#items {
+    display: none;
+}
+
+#previousOrders {
+    margin-top: 30px;
+    border-top: 1px solid #ddd; /* Add a separator line */
+    padding-top: 20px;
+}
+
+.order-summary {
+    background-color: #f9f9f9; /* Light gray background */
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px; /* Rounded corners */
+}
+
+.order-summary p { /* Summary line */
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.order-summary ul { /* Item list */
+    padding-left: 20px;
+    margin-top: 5px;
+}
