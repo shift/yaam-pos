@@ -102,6 +102,7 @@ h1, h2 {
 }
 
 footer {
+    display: sticky;
     text-align: center;
     font-size: xx-small;
     padding: 1px;
