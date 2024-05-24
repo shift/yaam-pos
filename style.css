@@ -137,3 +137,52 @@ footer {
 #numberPad button:hover {
     background-color: #45a049; /* Darker green */
 }
+
+#cart {
+    width: 95%;
+    margin: 0 auto;
+}
+#cart li {
+    line-height: 15px;
+    background: lightgray;
+    padding: 10px;
+}
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.cart-item button {
+    margin-left: 10px;
+    float: left;
+}
+
+.remove-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 15px;
+}
+
+.pfand-button {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 15px;
+}
+
+.pfand-button.pfand-added {
+    background-color: red;
+}

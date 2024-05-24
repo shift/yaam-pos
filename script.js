@@ -149,9 +149,10 @@ function updateCart() {
 
 	cart.forEach((item, index) => {
 		const li = document.createElement("li");
+		li.className = 'cart-item';
 		// Calculate price for display based on pfandAdded status
 		const displayPrice = item.pfandAdded ? item.originalPrice + pfandPrice : item.originalPrice;
-		li.textContent = `${item.name} - €${displayPrice.toFixed(2)}`;
+		li.textContent = `${item.name}`;
 
 		// Add Pfand controls
 		const pfandControls = document.createElement("div");
@@ -175,7 +176,7 @@ function updateCart() {
 		pfandControls.appendChild(removePfandButton);
 
 		const removeButton = document.createElement("button");
-		removeButton.textContent = "Remove";
+		removeButton.textContent = "x";
 		removeButton.classList.add("remove-button"); // Add a class for styling
 		removeButton.addEventListener("click", () => removeFromCart(index));
 		li.appendChild(removeButton);
