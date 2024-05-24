@@ -173,6 +173,12 @@ function updateCart() {
 
 		pfandControls.appendChild(addPfandButton);
 		pfandControls.appendChild(removePfandButton);
+
+		const removeButton = document.createElement("button");
+		removeButton.textContent = "Remove";
+		removeButton.classList.add("remove-button"); // Add a class for styling
+		removeButton.addEventListener("click", () => removeFromCart(index));
+		li.appendChild(removeButton);
 		li.appendChild(pfandControls);
 
 		cartList.appendChild(li);
@@ -258,3 +264,8 @@ function toggleOrderDetails(orderDetails) {
 }
 
 displayPreviousOrders();
+
+function removeFromCart(index) {
+	cart.splice(index, 1);
+	updateCart();
+}
