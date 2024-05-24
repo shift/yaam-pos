@@ -149,7 +149,9 @@ function updateCart() {
 
 	cart.forEach((item, index) => {
 		const li = document.createElement("li");
-		li.textContent = `${item.name} - €${item.price.toFixed(2)}`;
+		// Calculate price for display based on pfandAdded status
+		const displayPrice = item.pfandAdded ? item.originalPrice + pfandPrice : item.originalPrice;
+		li.textContent = `${item.name} - €${displayPrice.toFixed(2)}`;
 
 		// Add Pfand controls
 		const pfandControls = document.createElement("div");
@@ -158,7 +160,6 @@ function updateCart() {
 		addPfandButton.disabled = item.pfandAdded;
 		addPfandButton.addEventListener("click", () => {
 			item.pfandAdded = true;
-			item.price = item.originalPrice + pfandPrice;
 			updateCart();
 		});
 
@@ -167,7 +168,6 @@ function updateCart() {
 		removePfandButton.disabled = !item.pfandAdded;
 		removePfandButton.addEventListener("click", () => {
 			item.pfandAdded = false;
-			item.price = item.originalPrice;
 			updateCart();
 		});
 
@@ -178,8 +178,10 @@ function updateCart() {
 		cartList.appendChild(li);
 	});
 
-	// Update total
-	const total = cart.reduce((sum, item) => sum + item.price, 0);
+	// Update total (corrected logic)
+	const total = cart.reduce((sum, item) => {
+		return sum + (item.pfandAdded ? item.originalPrice + pfandPrice : item.originalPrice);
+	}, 0);
 	document.getElementById("total").textContent = `Total: €${total.toFixed(2)}`;
 
 	const checkoutButton = document.getElementById("checkout");
